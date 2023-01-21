@@ -1,0 +1,31 @@
+﻿@using OnlineDars.Service.ViewModels.Videos;
+@{
+    ViewData["Title"] = "Home Page";
+    }
+@model VideoViewModel
+<div  >
+
+    <div class="col">
+        <div class="fa-video">
+            <video id="videoPlayer" src="@Url.Content(Model.VideoPath)" oncontextmenu="return false"  controls autoplay controlsList="nodownload"style="max-height:1000px; max-width :1200px; width: 100%;" />
+        </div>
+        <div class="text-white">
+            <ul>
+                <li><i style="color:deeppink" class="fa fa-eye"></i>
+                    <span>@Model.ViewsCount</span>
+                    </li>
+            </ul>
+            <h2>            
+            <font class ="text-lg-start">@Model.Title</font>
+            </h2>
+            <div>             
+                <br>              
+                <p class="text-lg-start; text-white-50" style="width: 100%; ">@Model.Description</p>                   
+            </div>
+        </div>
+        
+    </div>
+  
+  
+
+</div>

@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDars.Web", "src\OnlineDars.Web\OnlineDars.Web.csproj", "{BDF19306-18E5-4155-BD95-4E38D3594D58}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDars.Domain", "src\OnlineDars.Domain\OnlineDars.Domain.csproj", "{8B77D9B2-5F3F-4753-B3F1-61E1A238DC1B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDars.DataAccess", "src\OnlineDars.DataAccess\OnlineDars.DataAccess.csproj", "{41B803F9-AAC0-48CD-A75F-D550E58A24B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineDars.Service", "src\OnlineDars.Service\OnlineDars.Service.csproj", "{9A79B735-8074-4E1C-B3CB-3ED13DD2CE7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{95DF2278-C53E-44C9-9FC3-D73367A91A42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2C8F1757-ED2C-47FF-AF08-DDBF496AECAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDF19306-18E5-4155-BD95-4E38D3594D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF19306-18E5-4155-BD95-4E38D3594D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDF19306-18E5-4155-BD95-4E38D3594D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDF19306-18E5-4155-BD95-4E38D3594D58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B77D9B2-5F3F-4753-B3F1-61E1A238DC1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B77D9B2-5F3F-4753-B3F1-61E1A238DC1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B77D9B2-5F3F-4753-B3F1-61E1A238DC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B77D9B2-5F3F-4753-B3F1-61E1A238DC1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B803F9-AAC0-48CD-A75F-D550E58A24B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B803F9-AAC0-48CD-A75F-D550E58A24B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B803F9-AAC0-48CD-A75F-D550E58A24B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B803F9-AAC0-48CD-A75F-D550E58A24B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A79B735-8074-4E1C-B3CB-3ED13DD2CE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A79B735-8074-4E1C-B3CB-3ED13DD2CE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A79B735-8074-4E1C-B3CB-3ED13DD2CE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A79B735-8074-4E1C-B3CB-3ED13DD2CE7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BDF19306-18E5-4155-BD95-4E38D3594D58} = {95DF2278-C53E-44C9-9FC3-D73367A91A42}
+		{8B77D9B2-5F3F-4753-B3F1-61E1A238DC1B} = {95DF2278-C53E-44C9-9FC3-D73367A91A42}
+		{41B803F9-AAC0-48CD-A75F-D550E58A24B8} = {95DF2278-C53E-44C9-9FC3-D73367A91A42}
+		{9A79B735-8074-4E1C-B3CB-3ED13DD2CE7F} = {95DF2278-C53E-44C9-9FC3-D73367A91A42}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BF81704-ECAD-4359-B406-8057F4C1AA68}
+	EndGlobalSection
+EndGlobal
