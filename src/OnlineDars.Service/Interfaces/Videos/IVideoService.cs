@@ -10,6 +10,6 @@ namespace OnlineDars.Service.Interfaces.Videos
     public interface IVideoService
     {
         public Task<VideoViewModel> GetAsync(long id);
-        public Task<IList<VideoViewModel>> GetAllAsync();
+        public Task<IList<VideoBaseViewModel>> GetAllAsync(long categoryId);
     }
 }

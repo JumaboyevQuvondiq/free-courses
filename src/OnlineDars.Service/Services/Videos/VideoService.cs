@@ -1,4 +1,5 @@
-﻿using OnlineDars.DataAccess.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineDars.DataAccess.Interfaces;
 using OnlineDars.Domain.Exceptions;
 using OnlineDars.Service.Interfaces.Videos;
 using OnlineDars.Service.ViewModels.Videos;
@@ -20,9 +21,13 @@ namespace OnlineDars.Service.Services.Video
             _unitOfWork = unitOfWork;
         }
 
-        public Task<IList<VideoViewModel>> GetAllAsync()
+        public async Task<IList<VideoBaseViewModel>> GetAllAsync(long categoryId)
         {
-            throw new NotImplementedException();
+            var res = _unitOfWork.Videos.GetAll()
+                .Select(x => new VideoBaseViewModel() { Id = x.Id, Title = x.VideoName, ViewsCount = x.ViewsCount,VideoPath= x.VideoPath });
+            return await res.ToListAsync();
+                
+              
         }
 
         public async Task<VideoViewModel> GetAsync(long id)

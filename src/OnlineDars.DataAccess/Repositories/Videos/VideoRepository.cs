@@ -14,5 +14,6 @@ namespace OnlineDars.DataAccess.Repositories.Videos
 		public VideoRepository(AppDbContext context) : base(context)
 		{
 		}
+		public IQueryable GetAll(long categroyId) => _dbSet.Where(x=>x.CategoryId== categroyId);	
 	}
 }

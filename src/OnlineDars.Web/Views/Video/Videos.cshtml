@@ -1,0 +1,27 @@
+﻿@using OnlineDars.Service.ViewModels.Videos;
+@model IList<VideoBaseViewModel>
+<div class="row g-10" style="display: flex;justify-content: center">
+    <div class="most-popular">
+        <div class="col-lg">
+            <div class="heading-section">
+                <h4><em></em>Dasturlash</h4>
+            </div>
+            <div class="row">
+                @foreach (var video in Model)
+                {
+                     <div class="col-lg-4 col-sm-7">
+                        <div class="item">
+                           <div class="fa fa-video">
+                                <video id="videoPlayer" src="@Url.Content(video.VideoPath)" oncontextmenu="return false"  style="max-height:600px; max-width :400px; width: 100%;"  />
+                             </div>
+                                <a href="@Url.ActionLink("Index","Home")"><h4>@video.Title</h4></a>
+                            <ul class="text-lg-end">
+                                <li>@video.ViewsCount<i style="color: deeppink;margin:2px" class="fa fa-eye"></i></li>
+                            </ul>   
+                        </div>
+                     </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
