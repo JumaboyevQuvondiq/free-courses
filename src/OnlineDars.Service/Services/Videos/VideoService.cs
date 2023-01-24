@@ -23,7 +23,7 @@ namespace OnlineDars.Service.Services.Video
 
         public async Task<IList<VideoBaseViewModel>> GetAllAsync(long categoryId)
         {
-            var res = _unitOfWork.Videos.GetAll()
+            var res = _unitOfWork.Videos.GetAll().Where(x=>x.CategoryId == categoryId)
                 .Select(x => new VideoBaseViewModel() { Id = x.Id, Title = x.VideoName, ViewsCount = x.ViewsCount,VideoPath= x.VideoPath });
             return await res.ToListAsync();
                 

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="~/css/owl.css">
     <link rel="stylesheet" href="~/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
    
 </head>
 
@@ -41,7 +42,7 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="@Url.Action("Index","Home")">Asosiy</a></li>
-                            <li><a href="@Url.Action("Index","Category")">Kategoriyalar</a></li>
+                            <li><a asp-controller="categories" asp-action="index">Kategoriyalar</a></li>
                             <li><a href="profile.html">Profile<img src="https://localhost:7009/assets/images/profile-header.jpg" alt=""></a></li>
                         </ul>
                         <a class='menu-trigger'>

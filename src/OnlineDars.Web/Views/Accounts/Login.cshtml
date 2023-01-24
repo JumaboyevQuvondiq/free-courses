@@ -1,0 +1,35 @@
+﻿@using OnlineDars.Service.Dtos.Accounts;
+@model AccountLoginDto
+@{
+    Layout = "_AccountLayout.cshtml";
+}
+
+
+	<div class="card-3d-wrap mx-auto">
+		<div class="card-3d-wrapper">
+			<div class="card-front">
+				<div class="center-wrap">
+					<div class="section text-center">
+						<h4 class="mb-4 pb-3" style="color:whitesmoke">Log In</h4>
+						<div class="form-group">
+						<input type="email" asp-for=Email class="form-style" placeholder="Your Email" >
+							<i class="mt-3 input-icon fa fa-at"></i>
+							 <span asp-validation-for="Email" class="text-danger"></span>
+						</div>
+						<div class="form-group mt-2">
+						<input type="password" asp-for=Password class="form-style" placeholder="Your Password">
+						<i<i class="mt-3 input-icon fa fa-lock"></i>
+						 <span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+							<a class="btn mt-4 me-5" style="background-color :#C13674">Log In</a>
+							<span>
+							<a asp-controller="accounts" asp-action="register" class="btn mt-4 " style="background-color :#C13674">Sign Up</a>
+						</span>
+						<p class="mb-0 mt-4 text-center"><a class="link">Forgot your password?</a></p>
+					</div>
+				</div>							
+			</div>
+		</div>
+	</div>
+
+		

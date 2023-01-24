@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using OnlineDars.DataAccess.DbContexts;
 using OnlineDars.DataAccess.Interfaces;
 using OnlineDars.DataAccess.Repositories;
+using OnlineDars.Service.Interfaces.Accounts;
 using OnlineDars.Service.Interfaces.Categories;
 using OnlineDars.Service.Interfaces.Videos;
+using OnlineDars.Service.Services.Accounts;
 using OnlineDars.Service.Services.Categories;
 using OnlineDars.Service.Services.Video;
 
@@ -16,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connect
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IVideoService, VideoService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
