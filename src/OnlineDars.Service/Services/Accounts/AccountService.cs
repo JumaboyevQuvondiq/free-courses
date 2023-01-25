@@ -3,6 +3,7 @@ using OnlineDars.Domain.Entities.Users;
 using OnlineDars.Service.Common.Security;
 using OnlineDars.Service.Dtos.Accounts;
 using OnlineDars.Service.Interfaces.Accounts;
+using OnlineDars.Service.Interfaces.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +15,21 @@ namespace OnlineDars.Service.Services.Accounts
 	public class AccountService : IAccountService
 	{
 		private readonly IUnitOfWork _repository;
-		public AccountService(IUnitOfWork unitOfWork)
+		private readonly IAuthManager _authManager;
+
+		public AccountService(IUnitOfWork unitOfWork, IAuthManager authManager)
 		{
 			this._repository = unitOfWork;
+			_authManager = authManager;
 		}
-		public Task<string> LoginAsync(AccountLoginDto accountLoginDto)
+		public async Task<string> LoginAsync(AccountLoginDto accountLoginDto)
 		{
-			throw new NotImplementedException();
+			var emailedUser = await _repository.Users.FirstOrDefaultAsync(x => x.Email == accountLoginDto.Email);
+			if (emailedUser is  null) throw new Exception();
+
+			var result = PasswordHasher.Verify(accountLoginDto.Password,emailedUser.Salt,emailedUser.PasswordHash);
+			if (!result) throw new Exception();
+			return _authManager.GenerateToken(emailedUser);
 		}
 
 		public async Task<bool> RegisterAsync(AccountRegisterDto accountRegisterDto)

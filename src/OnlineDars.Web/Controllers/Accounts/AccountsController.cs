@@ -18,11 +18,29 @@ namespace OnlineDars.Web.Controllers.Accounts
             return View("Login");
         }
 
-        [HttpGet("register")]
+		[HttpPost("login")]
+		public async Task<IActionResult> LoginAsync(AccountLoginDto accountLoginDto)
+		{
+			if (ModelState.IsValid)
+			{
+				var token = await _service.LoginAsync(accountLoginDto);
+				HttpContext.Response.Cookies.Append("X-Access-Token", token, new CookieOptions()
+				{
+					HttpOnly= true,
+					SameSite = SameSiteMode.Strict
+				});
+				return RedirectToAction("Index", "categories", new { area = "" });
+			}
+			return Login();
+		}
+
+		[HttpGet("register")]
         public ViewResult Register()
         {
             return View("Register");
         }
+		
+
 		[HttpPost("register")]
 		public async Task<IActionResult> RegisterAsync(AccountRegisterDto accountRegisterDto)
 		{
