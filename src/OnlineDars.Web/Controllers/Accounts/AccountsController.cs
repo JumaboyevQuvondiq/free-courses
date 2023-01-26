@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineDars.Service.Common.Helpers;
 using OnlineDars.Service.Dtos.Accounts;
 using OnlineDars.Service.Interfaces.Accounts;
 
 namespace OnlineDars.Web.Controllers.Accounts
 {
     [Route("accounts")]
+	
     public class AccountsController : Controller
     {
 		private readonly IAccountService _service;
@@ -57,6 +59,16 @@ namespace OnlineDars.Web.Controllers.Accounts
 				}
 			}
 			else return Register();
+		}
+
+		[HttpGet("logout")]
+		public IActionResult LogOut()
+		{
+			HttpContext.Response.Cookies.Append("X-Access-Token", "", new CookieOptions()
+			{
+				Expires = TimeHelper.GetCurrentServerTime().AddDays(-1)
+			});
+			return RedirectToAction("Login", "Accounts", new { area = "" });
 		}
 	}
 }

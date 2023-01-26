@@ -27,6 +27,8 @@ namespace OnlineDars.Service.Services.Common
 			var claims = new[]
 			{
 				new Claim("Id", user.Id.ToString()),
+				new Claim("Name", user.FullName.ToString()),
+				new Claim("ImagePath",(user.ImagePath is null)?"":user.ImagePath),
 				new Claim(ClaimTypes.Email, user.Email),
 				new Claim("EmailVerified", user.EmailVerify.ToString())
 			};

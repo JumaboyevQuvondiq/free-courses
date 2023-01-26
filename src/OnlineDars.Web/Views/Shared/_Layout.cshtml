@@ -27,8 +27,8 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="" class="logo">
-                            <img src="~/assets/images/Logo.png" alt="">
+                        <a asp-controller="Home" asp-action="Index" class="logo text-center" >
+                            <img style="max-width:150px; max-height:60px" src="~/assets/images/Logo.png" alt="">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Search End ***** -->
@@ -43,8 +43,8 @@
                         <ul class="nav">
                             <li><a href="@Url.Action("Index","Home")">Asosiy</a></li>
                             <li><a asp-controller="categories" asp-action="index">Kategoriyalar</a></li>
-                            <li><a href="profile.html">Profile<img src="https://localhost:7009/assets/images/profile-header.jpg" alt=""></a></li>
-                        </ul>
+                            @await Component.InvokeAsync("Identity")
+                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
                         </a>
