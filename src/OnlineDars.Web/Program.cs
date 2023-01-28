@@ -12,6 +12,7 @@ using OnlineDars.Service.Services.Common;
 using OnlineDars.Service.Services.Video;
 using OnlineDars.Web.Configuration.LayerConfiguration;
 using OnlineDars.Web.Middlewares;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -35,7 +36,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 app.UseStatusCodePages(async context =>
@@ -46,9 +46,27 @@ app.UseStatusCodePages(async context =>
 	}	
 
 });
+app.UseStaticFiles();
+
+app.UseHttpsRedirection();
 app.UseMiddleware<TokenRedirectMiddleware>();
 app.UseAuthentication();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+	OnPrepareResponse = async ctx =>
+	{
+		var token = ctx.Context.Request.Headers.Keys.FirstOrDefault("X-Access-Token");
+		if (token is null)
+		{
+			throw new Exception("Not authenticated");
+		}
+	}
+});
 app.UseAuthorization();
+
+
+
 
 app.MapControllerRoute(
 	name: "default",
