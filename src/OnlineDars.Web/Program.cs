@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineDars.DataAccess.DbContexts;
 using OnlineDars.DataAccess.Interfaces;
 using OnlineDars.DataAccess.Repositories;
+using OnlineDars.Domain.Exceptions;
 using OnlineDars.Service.Interfaces.Accounts;
 using OnlineDars.Service.Interfaces.Categories;
 using OnlineDars.Service.Interfaces.Common;
@@ -46,23 +48,21 @@ app.UseStatusCodePages(async context =>
 	}	
 
 });
-app.UseStaticFiles();
+//app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 app.UseMiddleware<TokenRedirectMiddleware>();
-app.UseAuthentication();
-
-app.UseStaticFiles(new StaticFileOptions
+app.UseWhen( context =>
 {
-	OnPrepareResponse = async ctx =>
-	{
-		var token = ctx.Context.Request.Headers.Keys.FirstOrDefault("X-Access-Token");
-		if (token is null)
-		{
-			throw new Exception("Not authenticated");
-		}
-	}
-});
+	
+		if(!context.Request.Path.ToString().Contains("mp4"))
+		return true;
+		return false;
+	
+}, app=>app.UseStaticFiles());
+app.UseAuthentication();
+//aspappenvergin
+
 app.UseAuthorization();
 
 

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,9 +40,10 @@ namespace OnlineDars.Service.Services.Video
                 Id = videoInfo.Id,
                 Title = videoInfo.VideoName,
                 Description = videoInfo.VideoDescription,
-                VideoPath = videoInfo.VideoPath,
                 ViewsCount = videoInfo.ViewsCount
             };
+            var file = new FileInfo("wwwroot/"+videoInfo.VideoPath);
+             videoViewModel.VideoPath = await File.ReadAllBytesAsync(file.FullName);
             return videoViewModel;
         }
     }
