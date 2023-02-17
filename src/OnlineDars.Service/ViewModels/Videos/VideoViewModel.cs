@@ -12,7 +12,7 @@ namespace OnlineDars.Service.ViewModels.Videos
         public long Id { get; set; }    
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public byte[] VideoPath { get; set; }
+        public string VideoPath { get; set; } = string.Empty;
         public long ViewsCount { get; set; }    
        
     }

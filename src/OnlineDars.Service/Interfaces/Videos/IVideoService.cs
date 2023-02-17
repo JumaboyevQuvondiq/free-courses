@@ -1,4 +1,5 @@
-﻿using OnlineDars.Service.ViewModels.Videos;
+﻿using OnlineDars.Domain.Entities.Videos;
+using OnlineDars.Service.ViewModels.Videos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace OnlineDars.Service.Interfaces.Videos
     {
         public Task<VideoViewModel> GetAsync(long id);
         public Task<IList<VideoBaseViewModel>> GetAllAsync(long categoryId);
-    }
+		public Task<IList<Video>> GetAllVideosAsync();
+	}
 }

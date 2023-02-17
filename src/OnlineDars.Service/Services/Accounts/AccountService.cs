@@ -24,14 +24,30 @@ namespace OnlineDars.Service.Services.Accounts
 		}
 		public async Task<string> LoginAsync(AccountLoginDto accountLoginDto)
 		{
+			
 			var emailedUser = await _repository.Users.FirstOrDefaultAsync(x => x.Email == accountLoginDto.Email);
 			if (emailedUser is  null) throw new Exception();
-
-			var result = PasswordHasher.Verify(accountLoginDto.Password,emailedUser.Salt,emailedUser.PasswordHash);
-			if (!result) throw new Exception();
+			var result = PasswordHasher.Verify(accountLoginDto.Password, emailedUser.Salt, emailedUser.PasswordHash);
+			if (!result) throw new Exception("Parol xato");
 			return _authManager.GenerateToken(emailedUser);
+		
 		}
-
+		public async Task<bool> UserEmailVerifyAsync(AccountLoginDto accountLoginDto)
+		{
+			var User = await _repository.Users.FirstOrDefaultAsync(x => x.Email == accountLoginDto.Email);
+			if (User is null) throw new Exception();
+			if (!User.EmailVerify) { return false; }
+			return true;
+		}
+		public async Task<bool> VerifyEmailAsync(AccountLoginDto accountLoginDto)
+		{
+			var User = await _repository.Users.FirstOrDefaultAsync(x => x.Email == accountLoginDto.Email);
+			if (User is null) throw new Exception();
+			User.EmailVerify = true;
+			_repository.Users.Update(User.Id,User);
+		   var res= await _repository.SaveChangesAsync();
+			return res > 0;
+		}
 		public async Task<bool> RegisterAsync(AccountRegisterDto accountRegisterDto)
 		{
 			var emailedUser = await _repository.Users.FirstOrDefaultAsync(x => x.Email == accountRegisterDto.Email);

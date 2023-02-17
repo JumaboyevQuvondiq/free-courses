@@ -1,0 +1,42 @@
+﻿@using OnlineDars.Service.Dtos.Emails;
+@model EmailVerifyDto
+@{
+	ViewBag.Email = Model.Email;
+}
+@{
+	Layout = "_AccountLayout.cshtml";
+}
+
+
+<div class="card-3d-wrap mx-auto">
+	<div class="card-3d-wrapper">
+		<div class="card-front">
+			<div class="center-wrap">
+				<div class="section text-center">
+					<form asp-controller="accounts" asp-action="VerifyEmail" method="post">
+						<h4 class="mb-4 pb-3" style="color:whitesmoke">Verify</h4>
+						<div class="form-group">
+							<input type="email" asp-for=Email class="form-style" />
+							<i class="mt-3 input-icon fa fa-at"></i>
+						</div>
+						<div class="form-group mt-2">
+							<input type="number" asp-for=Code class="form-style" placeholder="Your Code">
+							<i class="mt-3 input-icon fa fa-message"></i>
+							<span asp-validation-for="Code" class="text-danger"></span>
+						</div>
+						@{
+							Model.Email = ViewBag.Email;
+						}
+						<input type="submit" class="btn mt-4 me-5" style="background-color :#C13674" value="Verify" />
+						<span>
+							<a asp-controller="accounts" asp-action="login" class="btn mt-4 " style="background-color :#C13674">Log In</a>
+						</span>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

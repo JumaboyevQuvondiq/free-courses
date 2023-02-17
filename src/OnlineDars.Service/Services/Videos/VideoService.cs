@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineDars.DataAccess.Interfaces;
+using OnlineDars.Domain.Entities.Videos;
 using OnlineDars.Domain.Exceptions;
 using OnlineDars.Service.Interfaces.Videos;
 using OnlineDars.Service.ViewModels.Videos;
@@ -31,7 +32,14 @@ namespace OnlineDars.Service.Services.Video
               
         }
 
-        public async Task<VideoViewModel> GetAsync(long id)
+		public async Task<IList<Domain.Entities.Videos.Video>> GetAllVideosAsync()
+		{
+			var res = _unitOfWork.Videos.GetAll().OrderBy(x => x.CategoryId).ThenBy(x=> x.Id);
+
+			return await res.ToListAsync();
+		}
+
+		public async Task<VideoViewModel> GetAsync(long id)
         {
             var videoInfo = await _unitOfWork.Videos.FindByIdAsync(id);
             if (videoInfo is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Video not found");
@@ -43,7 +51,9 @@ namespace OnlineDars.Service.Services.Video
                 ViewsCount = videoInfo.ViewsCount
             };
             var file = new FileInfo("wwwroot/"+videoInfo.VideoPath);
-             videoViewModel.VideoPath = await File.ReadAllBytesAsync(file.FullName);
+             var bytes= await File.ReadAllBytesAsync(file.FullName);
+            var base64 = Convert.ToBase64String(bytes);
+             videoViewModel.VideoPath = String.Format("data:video;base64,{0}", base64);
             return videoViewModel;
         }
     }

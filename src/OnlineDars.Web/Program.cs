@@ -19,13 +19,15 @@ using System.Net;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
-
+builder.Services.AddMemoryCache();
 string connectionString = builder.Configuration.GetConnectionString("Database");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IVideoService, VideoService>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IVerifyEmailService, VerifyEmailService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.ConfigureWeb(builder.Configuration);
 builder.Services.AddScoped<IIdentityService, IdentityService>();
@@ -65,6 +67,11 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+
+app.MapAreaControllerRoute(
+	name: "admin",
+	areaName: "Admin",
+	pattern: "admins/{controller=videos}/{action=Index}");
 
 
 

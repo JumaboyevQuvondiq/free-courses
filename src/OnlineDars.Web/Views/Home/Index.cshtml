@@ -8,11 +8,8 @@
     <div class="col">
         <div class="fa-video">
             <video id="videoPlayer" oncontextmenu="return false" preload="auto" controls autoplay controlsList="nodownload" style="max-height:1000px; max-width :1200px; width: 100%;">
-                 @{
-                    var base64 = Convert.ToBase64String(Model.VideoPath);
-                    var videosrc = String.Format("data:video;base64,{0}", base64);
-                }
-                <source src="@videosrc" type="video/mp4" />
+                
+                <source src="@Model.VideoPath" type="video/mp4" />
             </video>
         </div>
         <div class="text-white">

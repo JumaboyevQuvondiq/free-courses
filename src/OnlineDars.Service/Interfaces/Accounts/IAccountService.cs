@@ -11,5 +11,8 @@ namespace OnlineDars.Service.Interfaces.Accounts
     {
         public Task<string> LoginAsync(AccountLoginDto accountLoginDto);
         public Task<bool> RegisterAsync(AccountRegisterDto accountRegisterDto);
-    }
+        public Task<bool> UserEmailVerifyAsync(AccountLoginDto accountLoginDto);
+        public  Task<bool> VerifyEmailAsync(AccountLoginDto accountLoginDto);
+
+	}
 }
